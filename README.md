@@ -93,3 +93,5 @@
 
 ![提交 Issue](https://github.com/user-attachments/assets/c0357521-6dd0-4f13-8a99-bccdf1314ab8)
 
+注：相较于原版，支持分批拉取推送，每个Issues没有11个容器的限制，但每天限制拉取100个容器。
+
