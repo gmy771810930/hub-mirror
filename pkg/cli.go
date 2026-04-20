@@ -202,3 +202,7 @@ func (c *Cli) PushImage(ctx context.Context, image, platform string) error {
 
 	return nil
 }
+// ImageRemove 删除本地镜像
+func (c *Cli) ImageRemove(ctx context.Context, imageID string, options types.ImageRemoveOptions) ([]types.ImageDeleteResponseItem, error) {
+	return c.cli.ImageRemove(ctx, imageID, options)
+}
