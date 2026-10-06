@@ -11,17 +11,17 @@ jobs:
   # 镜像转换任务
   mirror_transition:
     # 运行环境
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     # 运行条件 => issues 的 label 包含 hub-mirror
     if: contains(github.event.issue.labels.*.name, 'hub-mirror')
     # 镜像转换任务的步骤列表
     steps:
       # 1. 切换分支（默认主分支）
       - name: Check out code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v5
       # 2. 设置 go 环境
       - name: Setup go
-        uses: actions/setup-go@v4
+        uses: actions/setup-go@v6
         with:
           go-version: '1.20'
       # 3. 运行 go 代码
@@ -44,7 +44,7 @@ jobs:
       # 5. 当以上步骤成功时，为 issues 添加 success 标签
       - name: Success issues
         if: ${{ success() }}
-        uses: actions/github-script@v5
+        uses: actions/github-script@v8
         with:
           script: |
             github.rest.issues.addLabels({
@@ -56,7 +56,7 @@ jobs:
       # 6. 当以上步骤失败时，为 issues 添加 failure 标签，并为其添加失败原因评论
       - name: Failure issues
         if: ${{ failure() }}
-        uses: actions/github-script@v5
+        uses: actions/github-script@v8
         with:
           script: |
             github.rest.issues.addLabels({
