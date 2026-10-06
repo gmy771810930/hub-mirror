@@ -13,8 +13,9 @@ jobs:
     # 运行环境
     runs-on: ubuntu-24.04
     permissions:
-      actions: write      # 允许写入 Actions 缓存
-      contents: read      # checkout 代码所需的最小权限
+      actions: write
+      contents: read
+      issues: write
     # 运行条件 => issues 的 label 包含 hub-mirror
     if: contains(github.event.issue.labels.*.name, 'hub-mirror')
     # 镜像转换任务的步骤列表
