@@ -13,7 +13,6 @@ jobs:
     # 运行环境
     runs-on: ubuntu-24.04
     permissions:
-      actions: write
       contents: read
       issues: write
     # 运行条件 => issues 的 label 包含 hub-mirror
@@ -28,6 +27,7 @@ jobs:
         uses: actions/setup-go@v6
         with:
           go-version: '1.24'
+          cache: false
       # 3. 运行 go 代码
       - name: Run code
         run: go run main.go --username=${{ secrets.DOCKER_USERNAME }} --password=${{ secrets.DOCKER_TOKEN }} --repository=${{ secrets.DOCKER_REPOSITORY }} --content='${{ github.event.issue.body }}' --maxContent=11 --outputPath=output.md
